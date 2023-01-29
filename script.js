@@ -25,10 +25,18 @@ $('#search-form').on('submit', function(event) {
     .then(function(response) {
         console.log(response);
 
-        const lat = response[0].lat;
+    const lat = response[0].lat;
     const lon = response[0].lon;
 
     console.log(lat, lon);
-    })
+
+    const weatherQueryUrl = 'http://api.openweathermap.org/data/2.5/forecast?lat=' + lat + '&lon=' + lon + '&appid=' + apiKey;
+
+    $.ajax({ url: weatherQueryUrl })
+    .then(function(weatherResponse) {
+        console.log(weatherResponse);
+    });
+
+    });
 
 });
