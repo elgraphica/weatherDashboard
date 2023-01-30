@@ -6,7 +6,6 @@ const userInput = $('#search-input').val();
 
 //ToDo
 // 1 prepend the value to the list container
-// 2 put today's weather in container---> today's weather
 // 3 put 5 days forecast weather in container for the forecast
 // 4 style HTML
 
@@ -61,6 +60,32 @@ $('#search-form').on('submit', function(event) {
           <p>Humidity: ${humidity}%</p>
         `);
   
+        $('#forecast').html('');
+        for (let i = 1; i < weatherList.length; i += 8) {
+            const weather = weatherList[i];
+            const timestamp = weather.dt;
+        
+            const forecastIconCode = weather.weather[0].icon;
+            const forecastIconUrl = "http://openweathermap.org/img/w/" + forecastIconCode + ".png";
+            const forecastTemperature = weather.main.temp;
+            const forecastWeatherDescription = weather.weather[0].description;
+            const forecastWindSpeed = weather.wind.speed;
+            const forecastHumidity = weather.main.humidity;
+            const forecastDate = new Date(timestamp * 1000);
+            const forecastFormattedDate = forecastDate.toLocaleDateString();
+        
+            $('#forecast').append(`
+                <div class="forecast-card">
+                    <p>Date: ${forecastFormattedDate}</p>
+                    <img src="${forecastIconUrl}" alt="Weather Icon">
+                    <p>${forecastWeatherDescription}</p>
+                    <p>Temperature: ${forecastTemperature} &#8451;</p>
+                    <p>Wind Speed: ${forecastWindSpeed} m/s</p>
+                    <p>Humidity: ${forecastHumidity}%</p>
+                </div>
+            `);
+        }
+
         const todayTimeStamp = today.dt;
         console.log(today);
   
