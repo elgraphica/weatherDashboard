@@ -6,7 +6,6 @@ const userInput = $('#search-input').val();
 
 //ToDo
 // 1 prepend the value to the list container
-// 3 put 5 days forecast weather in container for the forecast
 // 4 style HTML
 
 $('#search-form').on('submit', function(event) {
@@ -29,7 +28,21 @@ $('#search-form').on('submit', function(event) {
   
       console.log(lat, lon);
   
-      const weatherQueryUrl = 'http://api.openweathermap.org/data/2.5/forecast?units=metric&lat=' + lat + '&lon=' + lon + '&appid=' + apiKey;
+      const weatherQueryUrl = 'http://api.openweathermap.org/data/2.5/forecast?units=metric&lat=' + lat + '&lon=' + lon + '&appid=' + apiKey
+
+
+      $('#search-form').on('submit', function(event) {
+        event.preventDefault();
+    
+        const userInput = $('#search-input').val();
+    
+        // Add the latest search to the history list
+        $('#history-list').prepend(`<li>${userInput}</li>`);
+    
+        // Clear search input
+        $('#search-input').val('');
+    
+    });
   
       $.ajax({ url: weatherQueryUrl })
       .then(function(weatherResponse) {
