@@ -26,19 +26,13 @@ $('#search-form').on('submit', function(event) {
       console.log(lat, lon);
   
       const weatherQueryUrl = 'https://api.openweathermap.org/data/2.5/forecast?units=metric&lat=' + lat + '&lon=' + lon + '&appid=' + apiKey
-
-
-      $('#search-form').on('submit', function(event) {
-        event.preventDefault();
-    
-        const userInput = $('#search-input').val();
-    
-        $('#history-list').prepend(`<li>${userInput}</li>`);
+// //history list displayes after each search
+      $('#history-list').prepend(`<li>${userInput}</li>`);
     
         $('#search-input').val('');
-    
-    });
-  
+
+
+//today's weather  
       $.ajax({ url: weatherQueryUrl })
       .then(function(weatherResponse) {
         //Icon URL --> "https://openweathermap.org/img/w/" + iconcode + ".png"
@@ -68,6 +62,7 @@ $('#search-form').on('submit', function(event) {
           <p>Humidity: ${humidity}%</p>
         `);
   
+//5 day forecast        
         $('#forecast').html('');
         for (let i = 1; i < weatherList.length; i += 8) {
             const weather = weatherList[i];
@@ -92,15 +87,6 @@ $('#search-form').on('submit', function(event) {
                     <p>Humidity: ${forecastHumidity}%</p>
                 </div>
             `);
-        }
-
-        const todayTimeStamp = today.dt;
-        console.log(today);
-  
-        for (let i = 1; i < weatherList.length; i += 8) {
-          const weather = weatherList[i];
-          const timestamp = weather.dt;
-          console.log(weather);
         }
       });
     });
