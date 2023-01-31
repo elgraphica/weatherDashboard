@@ -4,9 +4,6 @@ const apiKey = '996513822471b1a94113e31bc557ef81';
 
 const userInput = $('#search-input').val();
 
-//ToDo
-// 1 prepend the value to the list container
-// 4 style HTML
 
 $('#search-form').on('submit', function(event) {
     event.preventDefault();
@@ -36,17 +33,15 @@ $('#search-form').on('submit', function(event) {
     
         const userInput = $('#search-input').val();
     
-        // Add the latest search to the history list
         $('#history-list').prepend(`<li>${userInput}</li>`);
     
-        // Clear search input
         $('#search-input').val('');
     
     });
   
       $.ajax({ url: weatherQueryUrl })
       .then(function(weatherResponse) {
-        //Icon URL --> "http://openweathermap.org/img/w/" + iconcode + ".png"
+        //Icon URL --> "https://openweathermap.org/img/w/" + iconcode + ".png"
         console.log(weatherResponse);
   
         const weatherList = weatherResponse.list;
@@ -57,7 +52,7 @@ $('#search-form').on('submit', function(event) {
         const cityName = weatherResponse.city.name;
         const currentDate = new Date();
         const formattedDate = currentDate.toLocaleDateString();
-        const iconUrl = "http://openweathermap.org/img/w/" + iconCode + ".png";
+        const iconUrl = "https://openweathermap.org/img/w/" + iconCode + ".png";
         const temperature = today.main.temp;
         const weatherDescription = today.weather[0].description;
         const windSpeed = today.wind.speed;
@@ -79,7 +74,7 @@ $('#search-form').on('submit', function(event) {
             const timestamp = weather.dt;
         
             const forecastIconCode = weather.weather[0].icon;
-            const forecastIconUrl = "http://openweathermap.org/img/w/" + forecastIconCode + ".png";
+            const forecastIconUrl = "https://openweathermap.org/img/w/" + forecastIconCode + ".png";
             const forecastTemperature = weather.main.temp;
             const forecastWeatherDescription = weather.weather[0].description;
             const forecastWindSpeed = weather.wind.speed;
