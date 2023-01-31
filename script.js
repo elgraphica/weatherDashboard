@@ -13,7 +13,7 @@ $('#search-form').on('submit', function(event) {
   
     const userInput = $('#search-input').val();
   
-    const queryUrl = 'http://api.openweathermap.org/geo/1.0/direct?q=' + userInput + '&limit=5&appid=' + apiKey;
+    const queryUrl = 'https://api.openweathermap.org/geo/1.0/direct?q=' + userInput + '&limit=5&appid=' + apiKey;
   
     history.push(userInput);
     
@@ -28,7 +28,7 @@ $('#search-form').on('submit', function(event) {
   
       console.log(lat, lon);
   
-      const weatherQueryUrl = 'http://api.openweathermap.org/data/2.5/forecast?units=metric&lat=' + lat + '&lon=' + lon + '&appid=' + apiKey
+      const weatherQueryUrl = 'https://api.openweathermap.org/data/2.5/forecast?units=metric&lat=' + lat + '&lon=' + lon + '&appid=' + apiKey
 
 
       $('#search-form').on('submit', function(event) {
