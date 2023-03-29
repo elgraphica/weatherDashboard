@@ -21,6 +21,11 @@ header {
     color: #333;
   }
 
+.container {
+  margin: 0 auto;
+  text-align: center;
+}
+
 #search-form {
     background-color: #fff;
     padding: 20px;
@@ -29,10 +34,10 @@ header {
 }
 
 #search-input {
-    width: 100%;
+    max-width: 984px;
     padding: 10px;
     font-size: 16px;
-    border: none;
+    border: 1px solid;
     border-radius: 10px;
     margin-bottom: 20px;
 }
@@ -100,3 +105,5 @@ header {
     flex-wrap: wrap;
     justify-content: space-between;
 }
+
+
